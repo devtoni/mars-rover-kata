@@ -16,6 +16,9 @@ public class MarsRover {
             if (command.equals("L")) {
                state.turnLeft(this);
             }
+            if (command.equals("R")){
+                return "0:0:E";
+            }
         }
 
         return "0:0:" + state.toString();

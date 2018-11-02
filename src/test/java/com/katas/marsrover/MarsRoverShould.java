@@ -23,4 +23,11 @@ public class MarsRoverShould {
 
         assertEquals(marsRover.execute(commands), currentLocation);
     }
+
+    @Test
+    public void rotate_to_right_when_commands_are_executed(){
+        MarsRover marsRover = new MarsRover();
+
+        assertEquals(marsRover.execute("R"), "0:0:E");
+    }
 }
