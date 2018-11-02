@@ -2,6 +2,7 @@ package com.katas.marsrover;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -9,6 +10,13 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
 public class MarsRoverShould {
+
+    private MarsRover marsRover;
+
+    @Before
+    public void setUp() throws Exception {
+       marsRover = new MarsRover();
+    }
 
     @Test
     @Parameters({
@@ -19,15 +27,14 @@ public class MarsRoverShould {
             "LLLLL, 0:0:W"
     })
     public void rotate_to_left_when_commands_are_executed(String commands, String currentLocation) {
-        MarsRover marsRover = new MarsRover();
-
         assertEquals(marsRover.execute(commands), currentLocation);
     }
 
     @Test
-    public void rotate_to_right_when_commands_are_executed(){
-        MarsRover marsRover = new MarsRover();
-
-        assertEquals(marsRover.execute("R"), "0:0:E");
+    @Parameters({
+            "R, 0:0:E"
+    })
+    public void rotate_to_right_when_commands_are_executed(String commands, String currentLocation){
+        assertEquals(marsRover.execute(commands),currentLocation);
     }
 }
