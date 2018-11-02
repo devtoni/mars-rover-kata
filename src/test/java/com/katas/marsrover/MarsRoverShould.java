@@ -13,7 +13,8 @@ public class MarsRoverShould {
     @Test
     @Parameters({
             "L, 0:0:W",
-            "LL, 0:0:S"
+            "LL, 0:0:S",
+            "LLL, 0:0:E"
     })
     public void rotate_to_left_when_commands_are_executed(String commands, String currentLocation) {
         MarsRover marsRover = new MarsRover();
