@@ -1,19 +1,37 @@
 package com.katas.marsrover;
 
 public class MarsRover {
-    private Direction direction = Direction.of("N");
+    private State state;
+    // private Direction direction;
 
-    public String execute(String commands) {
-        String[] commandList = commands.split("");
-        for(String command: commandList){
-            if (command.equals("L")) {
-               this.direction = this.direction.left();
-            }
-        }
-        return "0:0:" + this.direction.representation;
+    public MarsRover() {
+       // this.direction = Direction.of("N");
+        this.state = new NorthState();
     }
 
-    private enum Direction {
+
+    public String execute(String commands) {
+        String[] commandList = commandParser(commands);
+        for(String command: commandList){
+            if (command.equals("L")) {
+               state.turnLeft(this);
+            }
+        }
+
+        return "0:0:" + state.toString();
+    }
+
+    private String[] commandParser(String commands) {
+        return commands.split("");
+    }
+
+    public void setState(State newState) {
+        this.state = newState;
+    }
+}
+
+/*
+private enum Direction {
         NORTH("N") {
             @Override
             public Direction left() {
@@ -54,4 +72,4 @@ public class MarsRover {
 
         public abstract Direction left();
     }
-}
+ */
