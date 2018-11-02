@@ -5,7 +5,7 @@ public interface State {
 
     void turnLeft(MarsRover context);
 
-    void turnRight();
+    void turnRight(MarsRover context);
 
     String toString();
 }

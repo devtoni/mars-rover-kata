@@ -1,6 +1,6 @@
 package com.katas.marsrover;
 
-public class EathState implements State {
+public class EastState implements State {
     @Override
     public void moveForward() {
 
@@ -12,8 +12,8 @@ public class EathState implements State {
     }
 
     @Override
-    public void turnRight() {
-
+    public void turnRight(MarsRover context) {
+        context.setState(new SouthState());
     }
 
     @Override

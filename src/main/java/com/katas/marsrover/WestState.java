@@ -12,8 +12,8 @@ public class WestState implements State {
     }
 
     @Override
-    public void turnRight() {
-
+    public void turnRight(MarsRover context) {
+       context.setState(new NorthState());
     }
 
     @Override

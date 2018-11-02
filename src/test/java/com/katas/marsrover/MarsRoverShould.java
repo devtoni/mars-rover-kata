@@ -32,7 +32,10 @@ public class MarsRoverShould {
 
     @Test
     @Parameters({
-            "R, 0:0:E"
+            "R, 0:0:E",
+            "RR, 0:0:S",
+            "RRRR, 0:0:N",
+            "RRRRR, 0:0:E"
     })
     public void rotate_to_right_when_commands_are_executed(String commands, String currentLocation){
         assertEquals(marsRover.execute(commands),currentLocation);
