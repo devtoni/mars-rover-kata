@@ -15,7 +15,8 @@ public class MarsRoverShould {
             "L, 0:0:W",
             "LL, 0:0:S",
             "LLL, 0:0:E",
-            "LLLL, 0:0:N"
+            "LLLL, 0:0:N",
+            "LLLLL, 0:0:W"
     })
     public void rotate_to_left_when_commands_are_executed(String commands, String currentLocation) {
         MarsRover marsRover = new MarsRover();
