@@ -40,4 +40,12 @@ public class MarsRoverShould {
     public void rotate_to_right_when_commands_are_executed(String commands, String currentLocation){
         assertEquals(marsRover.execute(commands),currentLocation);
     }
+
+    @Test
+    @Parameters({
+            "RL, 0:0:N"
+    })
+    public void rotate_to_any_side_when_commands_are_executed(String commands, String currentLocation){
+        assertEquals(marsRover.execute(commands), currentLocation);
+    }
 }
