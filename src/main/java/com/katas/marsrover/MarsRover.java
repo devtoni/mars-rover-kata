@@ -1,28 +1,34 @@
 package com.katas.marsrover;
 
 public class MarsRover {
+    private final String SEPARATOR = ":";
     private State state;
+    private Coordinates coordinates;
     // private Direction direction;
 
-    public MarsRover() {
-       // this.direction = Direction.of("N");
+    public MarsRover()  {
+        // this.direction = Direction.of("N");
         this.state = new NorthState();
+        this.coordinates = new Coordinates(1, 1);
     }
 
 
     public String execute(String commands) {
         String[] commandList = commandParser(commands);
-        for(String command: commandList){
+        for (String command : commandList) {
             if (command.equals("L")) {
-               state.turnLeft(this);
+                state.turnLeft(this);
             }
-            if (command.equals("R")){
+            if (command.equals("R")) {
                 state.turnRight(this);
+            }
+            if (command.equals("M")) {
+                this.coordinates.update(0, 1);
             }
 
         }
 
-        return "0:0:" + state.toString();
+        return this.coordinates.getX() + SEPARATOR + this.coordinates.getY() + SEPARATOR + state.toString();
     }
 
     private String[] commandParser(String commands) {

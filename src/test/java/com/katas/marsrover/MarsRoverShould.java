@@ -20,11 +20,11 @@ public class MarsRoverShould {
 
     @Test
     @Parameters({
-            "L, 0:0:W",
-            "LL, 0:0:S",
-            "LLL, 0:0:E",
-            "LLLL, 0:0:N",
-            "LLLLL, 0:0:W"
+            "L, 1:1:W",
+            "LL, 1:1:S",
+            "LLL, 1:1:E",
+            "LLLL, 1:1:N",
+            "LLLLL, 1:1:W"
     })
     public void rotate_to_left_when_commands_are_executed(String commands, String currentLocation) {
         assertEquals(marsRover.execute(commands), currentLocation);
@@ -32,10 +32,10 @@ public class MarsRoverShould {
 
     @Test
     @Parameters({
-            "R, 0:0:E",
-            "RR, 0:0:S",
-            "RRRR, 0:0:N",
-            "RRRRR, 0:0:E"
+            "R, 1:1:E",
+            "RR, 1:1:S",
+            "RRRR, 1:1:N",
+            "RRRRR, 1:1:E"
     })
     public void rotate_to_right_when_commands_are_executed(String commands, String currentLocation){
         assertEquals(marsRover.execute(commands),currentLocation);
@@ -43,9 +43,19 @@ public class MarsRoverShould {
 
     @Test
     @Parameters({
-            "RL, 0:0:N"
+            "RL, 1:1:N",
+            "RLR, 1:1:E",
+            "RRRLRR, 1:1:N"
     })
     public void rotate_to_any_side_when_commands_are_executed(String commands, String currentLocation){
+        assertEquals(marsRover.execute(commands), currentLocation);
+    }
+    
+    @Test
+    @Parameters({
+            "MMR, 1:3:E"
+    })
+    public void should_move_and_rotate_when_commands_are_executed(String commands, String currentLocation){
         assertEquals(marsRover.execute(commands), currentLocation);
     }
 }
