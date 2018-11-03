@@ -68,4 +68,15 @@ public class MarsRoverShould {
         assertEquals(marsRover.execute(commands), currentLocation);
     }
 
+    @Test
+    @Parameters({
+            "MMR, 2:1:E"
+    })
+    public void should_move_and_rotate_when_commands_are_executed_in_any_initial_location(String commands, String currentLocation) {
+        coordinates = new Coordinates(2, 3);
+        position = new Position(coordinates, grid);
+        MarsRover marsRover1 = new MarsRover(position);
+        assertEquals(marsRover1.execute(commands), currentLocation);
+    }
+
 }
