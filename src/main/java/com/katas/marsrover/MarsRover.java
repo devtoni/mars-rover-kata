@@ -2,13 +2,19 @@ package com.katas.marsrover;
 
 public class MarsRover {
     private final String SEPARATOR = ":";
+    private final SouthState southState;
     private State state;
     private Coordinates coordinates;
-    // private Direction direction;
+    private State westState;
+    private State eastState;
+    private State northState;
 
-    public MarsRover()  {
-        // this.direction = Direction.of("N");
-        this.state = new NorthState();
+    public MarsRover() {
+        this.state = new NorthState(this);
+        this.westState = new WestState(this);
+        this.eastState = new EastState(this);
+        this.northState = new NorthState(this);
+        this.southState = new SouthState(this);
         this.coordinates = new Coordinates(1, 1);
     }
 
@@ -17,13 +23,13 @@ public class MarsRover {
         String[] commandList = commandParser(commands);
         for (String command : commandList) {
             if (command.equals("L")) {
-                state.turnLeft(this);
+                state.turnLeft();
             }
             if (command.equals("R")) {
-                state.turnRight(this);
+                state.turnRight();
             }
             if (command.equals("M")) {
-                state.moveForward(this);
+                state.moveForward();
             }
 
         }
@@ -35,55 +41,28 @@ public class MarsRover {
         return commands.split("");
     }
 
-    public void setState(State newState) {
+    void setState(State newState) {
         this.state = newState;
     }
 
-    public void moveForward(int x, int y){
+    void moveForward(int x, int y) {
         this.coordinates.update(x, y);
     }
-}
 
-/*
-private enum Direction {
-        NORTH("N") {
-            @Override
-            public Direction left() {
-                return WEST;
-            }
-        }, EAST("E"){
-            @Override
-            public Direction left(){
-                return NORTH;
-            }
-        }, SOUTH("S"){
-            @Override
-            public Direction left(){
-                return EAST;
-            }
-        }, WEST("W"){
-            @Override
-            public Direction left(){
-                return SOUTH;
-            }
-        };
-
-
-        private final String representation;
-
-        Direction(String representation) {
-            this.representation = representation;
-        }
-
-        public static Direction of(String representation) {
-            for (Direction value : values()) {
-                if (value.representation.equals(representation)) {
-                    return value;
-                }
-            }
-            throw new RuntimeException();
-        }
-
-        public abstract Direction left();
+    State getWestState() {
+        return westState;
     }
- */
+
+    State getEastState() {
+        return eastState;
+    }
+
+    State getNorthState() {
+        return northState;
+    }
+
+    State getSouthState() {
+        return southState;
+    }
+
+}

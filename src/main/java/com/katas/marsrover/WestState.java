@@ -1,23 +1,30 @@
 package com.katas.marsrover;
 
 public class WestState implements State {
-    @Override
-    public void moveForward(MarsRover context) {
-       context.moveForward(-1, 0);
+
+    private final MarsRover context;
+
+    public WestState (MarsRover context){
+      this.context = context;
     }
 
     @Override
-    public void turnLeft(MarsRover context) {
-        context.setState(new SouthState());
+    public void moveForward() {
+        context.moveForward(-1, 0);
     }
 
     @Override
-    public void turnRight(MarsRover context) {
-       context.setState(new NorthState());
+    public void turnLeft() {
+        context.setState(context.getSouthState());
     }
 
     @Override
-    public String toString(){
+    public void turnRight() {
+        context.setState(context.getNorthState());
+    }
+
+    @Override
+    public String toString() {
         return "W";
     }
 }
