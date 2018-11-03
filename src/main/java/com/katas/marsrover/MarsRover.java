@@ -23,7 +23,7 @@ public class MarsRover {
                 state.turnRight(this);
             }
             if (command.equals("M")) {
-                this.coordinates.update(0, 1);
+                state.moveForward(this);
             }
 
         }
@@ -37,6 +37,10 @@ public class MarsRover {
 
     public void setState(State newState) {
         this.state = newState;
+    }
+
+    public void moveForward(int x, int y){
+        this.coordinates.update(x, y);
     }
 }
 

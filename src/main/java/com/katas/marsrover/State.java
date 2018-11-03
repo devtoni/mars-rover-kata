@@ -1,7 +1,7 @@
 package com.katas.marsrover;
 
 public interface State {
-    void moveForward();
+    void moveForward(MarsRover context);
 
     void turnLeft(MarsRover context);
 

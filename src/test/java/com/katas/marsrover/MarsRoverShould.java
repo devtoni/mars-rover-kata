@@ -53,7 +53,8 @@ public class MarsRoverShould {
     
     @Test
     @Parameters({
-            "MMR, 1:3:E"
+            "MMR, 1:3:E",
+            "MMRMM, 3:3:E"
     })
     public void should_move_and_rotate_when_commands_are_executed(String commands, String currentLocation){
         assertEquals(marsRover.execute(commands), currentLocation);

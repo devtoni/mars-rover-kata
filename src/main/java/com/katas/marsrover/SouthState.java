@@ -2,8 +2,8 @@ package com.katas.marsrover;
 
 public class SouthState implements State {
     @Override
-    public void moveForward() {
-
+    public void moveForward(MarsRover context) {
+        context.moveForward(0, -1);
     }
 
     @Override
