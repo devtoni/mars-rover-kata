@@ -2,14 +2,14 @@ package com.katas.marsrover;
 
 public class NorthState implements State {
 
-    private final MarsRover context;
+    private final Position context;
 
-    public NorthState (MarsRover context){
+    public NorthState (Position context){
         this.context = context;
     }
     @Override
-    public void moveForward() {
-        context.moveForward(0, 1);
+    public void moveForward(Coordinates coordinates) {
+        coordinates.increaseY( 1);
     }
 
     @Override

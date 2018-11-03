@@ -12,10 +12,16 @@ import static org.junit.Assert.assertEquals;
 public class MarsRoverShould {
 
     private MarsRover marsRover;
+    private Grid grid;
+    private Position position;
+    private Coordinates coordinates;
 
     @Before
     public void setUp() throws Exception {
-       marsRover = new MarsRover();
+        grid = new Grid(5, 5);
+        coordinates = new Coordinates(1, 1);
+        position = new Position(coordinates, grid);
+        marsRover = new MarsRover(position);
     }
 
     @Test
@@ -37,8 +43,8 @@ public class MarsRoverShould {
             "RRRR, 1:1:N",
             "RRRRR, 1:1:E"
     })
-    public void rotate_to_right_when_commands_are_executed(String commands, String currentLocation){
-        assertEquals(marsRover.execute(commands),currentLocation);
+    public void rotate_to_right_when_commands_are_executed(String commands, String currentLocation) {
+        assertEquals(marsRover.execute(commands), currentLocation);
     }
 
     @Test
@@ -47,16 +53,19 @@ public class MarsRoverShould {
             "RLR, 1:1:E",
             "RRRLRR, 1:1:N"
     })
-    public void rotate_to_any_side_when_commands_are_executed(String commands, String currentLocation){
+    public void rotate_to_any_side_when_commands_are_executed(String commands, String currentLocation) {
         assertEquals(marsRover.execute(commands), currentLocation);
     }
-    
+
     @Test
     @Parameters({
             "MMR, 1:3:E",
-            "MMRMM, 3:3:E"
+            "MMRMM, 3:3:E",
+            "LM, 5:1:W",
+            "LLM, 1:5:S"
     })
-    public void should_move_and_rotate_when_commands_are_executed(String commands, String currentLocation){
+    public void should_move_and_rotate_when_commands_are_executed(String commands, String currentLocation) {
         assertEquals(marsRover.execute(commands), currentLocation);
     }
+
 }

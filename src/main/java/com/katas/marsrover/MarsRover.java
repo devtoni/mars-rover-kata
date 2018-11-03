@@ -1,21 +1,10 @@
 package com.katas.marsrover;
 
 public class MarsRover {
-    private final String SEPARATOR = ":";
-    private final SouthState southState;
-    private State state;
-    private Coordinates coordinates;
-    private State westState;
-    private State eastState;
-    private State northState;
+    private final Position position;
 
-    public MarsRover() {
-        this.state = new NorthState(this);
-        this.westState = new WestState(this);
-        this.eastState = new EastState(this);
-        this.northState = new NorthState(this);
-        this.southState = new SouthState(this);
-        this.coordinates = new Coordinates(1, 1);
+    public MarsRover(Position position) {
+        this.position = position;
     }
 
 
@@ -23,46 +12,22 @@ public class MarsRover {
         String[] commandList = commandParser(commands);
         for (String command : commandList) {
             if (command.equals("L")) {
-                state.turnLeft();
+                position.turnLeft();
             }
             if (command.equals("R")) {
-                state.turnRight();
+                position.turnRight();
             }
             if (command.equals("M")) {
-                state.moveForward();
+                position.move();
             }
-
         }
 
-        return this.coordinates.getX() + SEPARATOR + this.coordinates.getY() + SEPARATOR + state.toString();
+        return position.toString();
     }
 
     private String[] commandParser(String commands) {
         return commands.split("");
     }
 
-    void setState(State newState) {
-        this.state = newState;
-    }
-
-    void moveForward(int x, int y) {
-        this.coordinates.update(x, y);
-    }
-
-    State getWestState() {
-        return westState;
-    }
-
-    State getEastState() {
-        return eastState;
-    }
-
-    State getNorthState() {
-        return northState;
-    }
-
-    State getSouthState() {
-        return southState;
-    }
 
 }

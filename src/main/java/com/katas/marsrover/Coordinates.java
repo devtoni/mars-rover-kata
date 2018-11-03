@@ -19,7 +19,15 @@ public class Coordinates {
     }
 
     public void update(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public void increaseX(int x){
         this.x += x;
+    }
+
+    public void increaseY(int y){
         this.y += y;
     }
 
